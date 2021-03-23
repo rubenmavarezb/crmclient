@@ -1,10 +1,10 @@
 import Layout from '../components/Layout';
 
-export default function AboutUs() {
+export default function Products() {
   return (
     <>
       <Layout>
-        <h1>About</h1>
+        <h1>Products</h1>
       </Layout>
     </>
   )
