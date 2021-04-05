@@ -4,7 +4,7 @@ export default function Products() {
   return (
     <>
       <Layout>
-        <h1>Products</h1>
+      <h1 className="text-2xl text-gray-800 font-light">Products</h1>
       </Layout>
     </>
   )

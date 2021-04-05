@@ -1,11 +1,15 @@
 import React from "react";
 import Head from 'next/head';
+import { useRouter } from 'next/router'
 //////////////////////////////
 import Sidebar from './Sidebar';
 
 const headtitle = 'CRM - Client administration'
 
 const Layout = ({ children }: {children: React.ReactNode}) => {
+
+    const router = useRouter();
+
     return (
         <>
 
@@ -15,6 +19,13 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
                 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
             </Head>
 
+            {router.pathname === "/login" || router.pathname === "/newaccount" ? (
+                <div className="bg-gray-800 min-h-screen flex flex-col justify-center">
+                    <div>
+                        {children}
+                    </div>
+                </div>
+            ) : (
             <div className="bg-gray-200 min-h-screen">
                 <div className="flex min-h-screen">
                     <Sidebar/>
@@ -25,6 +36,8 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
                     
                 </div>
             </div>
+            )}
+
 
         </>
     )
