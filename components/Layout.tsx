@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router'
 //////////////////////////////
 import Sidebar from './Sidebar';
+import Header from './Header';
 
 const headtitle = 'CRM - Client administration'
 
@@ -31,6 +32,7 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
                     <Sidebar/>
 
                     <main className="sm:w-2/3 xl:w-4/5 sm:min-h-screen p-5">
+                        <Header/>
                         {children}
                     </main>
                     
