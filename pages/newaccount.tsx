@@ -6,23 +6,14 @@ import { useMutation, gql } from '@apollo/client';
 import * as Yup from 'yup';
 ///////////////////////////////////////////////////
 import Layout from '../components/Layout';
+//////////////////////////////////////////
+import { showMsg } from '../helpers';
+import { NEW_ACCOUNT } from '../graphql';
 //////////////////////////////////////////////////
-
-const NEW_ACCOUNT = gql`
-  mutation newUser($input: UserInput) {
-    newUser(input: $input) {
-      id
-      name
-      lastname
-      email
-    }
-  }
-`;
-
 
 export default function NewAccount() {
 
-  const [msg, setMsg] = useState(null);
+  const [msg, setMsg] = useState('');
 
   const [ newUser ] = useMutation(NEW_ACCOUNT);
 
@@ -74,19 +65,11 @@ export default function NewAccount() {
     }
   })
 
-  const showMsg = () => {
-    return (
-      <div className="bg-white py-2 px-3 w-full my-3 max-w-sm text-center mx-auto">
-        <p>{msg}</p>
-      </div>
-    )
-  }
-
   return (
     <>
       <Layout>
 
-      {msg && showMsg()}
+      {msg && showMsg(msg)}
       
       <h1 className="text-2xl text-center font-light text-white">New Account</h1>
 

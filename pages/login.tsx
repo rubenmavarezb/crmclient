@@ -2,24 +2,24 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 ///////////////////////////////////////////////////
 import { useFormik } from 'formik';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import * as Yup from 'yup';
 ///////////////////////////////////////////////////
 import Layout from '../components/Layout';
+//////////////////////////////////////////
+import { showMsg } from '../helpers';
+import { AUTHENTICATE_USER } from '../graphql';
 //////////////////////////////////////////////////
 
-
-const AUTHENTICATE_USER = gql`
-  mutation authenticateUser($input: AuthenticateInput) {
-    authenticateUser(input: $input) {
-      token
-    }
-  }
-`;
+const cantidad = arrayDelCarrito => {
+  let total = arrayDelCarrito.reduce((t, product) => t + product.cantidas, 0);
+  console.log(total)
+  return total 
+}
 
 export default function Login() {
 
-  const [msg, setMsg] = useState(null);
+  const [msg, setMsg] = useState('');
 
   const [ authenticateUser ] = useMutation(AUTHENTICATE_USER);
 
@@ -68,20 +68,11 @@ export default function Login() {
     }
   })
 
-  const showMsg = () => {
-    return (
-      <div className="bg-white py-2 px-3 w-full my-3 max-w-sm text-center mx-auto">
-        <p>{msg}</p>
-      </div>
-    )
-  }
-
-
   return (
     <>
       <Layout>
 
-        {msg && showMsg()}
+        {msg && showMsg(msg)}
 
         <h1 className="text-2xl text-center font-light text-white">Login</h1>
 

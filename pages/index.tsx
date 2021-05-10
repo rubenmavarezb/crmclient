@@ -1,41 +1,29 @@
-import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+////////////////////////////////////////////////
+import { useQuery } from '@apollo/client';
 ///////////////////////////////////////////////
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
+//////////////////////////////////////////
 import { Client } from '../types'
+import { GET_CLIENTS_FROM_USER } from '../graphql'
 //////////////////////////////////////////////
-
-const GET_CLIENTS_FROM_USER = gql`
-  query getClientsSeller {
-    getClientsSeller{
-      id
-      name
-      lastname
-      company
-      email
-    }
-  }
-`;
-
 
 export default function Home() {
 
-  const { data, loading, refetch } = useQuery(GET_CLIENTS_FROM_USER);
+  const { data, loading, error } = useQuery(GET_CLIENTS_FROM_USER);
 
   const router = useRouter();
 
-  console.log(data)
-
   if(loading) {
-    refetch()
     return <Spinner/>
   }
 
   const toLogin = () => {
     if(!data.getClientsSeller) {
       router.push('/login')
+      console.log(error);
       return <Spinner/>
     }
   }

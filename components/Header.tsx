@@ -1,19 +1,13 @@
 import { useRouter } from 'next/router';
-import { useQuery, gql } from '@apollo/client';
-
-const GET_USER = gql`
-    query getUser {
-        getUser {
-            id
-            name
-            lastname
-        }
-    }
-`;
+/////////////////////////////////////////////////
+import { useQuery } from '@apollo/client';
+///////////////////////////////////////////////
+import { GET_USER } from '../graphql';
+////////////////////////////////////////////////
 
 const Header = () => {
 
-    const { data, loading, error} = useQuery(GET_USER);
+    const { data, loading } = useQuery(GET_USER);
 
     const router = useRouter();
 

@@ -1,9 +1,10 @@
 import React from "react";
 import Head from 'next/head';
 import { useRouter } from 'next/router'
-//////////////////////////////
+/////////////////////////////////////////
 import Sidebar from './Sidebar';
 import Header from './Header';
+////////////////////////////////////////
 
 const headtitle = 'CRM - Client administration'
 
