@@ -5,8 +5,10 @@ import { useQuery } from '@apollo/client';
 ///////////////////////////////////////////////
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
+import Client from '../components/Client';
 //////////////////////////////////////////
-import { Client } from '../types'
+import { ClientType } from '../types';
+//////////////////////////////////////////
 import { GET_CLIENTS_FROM_USER } from '../graphql'
 //////////////////////////////////////////////
 
@@ -44,16 +46,17 @@ export default function Home() {
                 <th className="w-1/5 py-2">Name</th>
                 <th className="w-1/5 py-2">Company</th>
                 <th className="w-1/5 py-2">Email</th>
+                <th className="w-1/5 py-2">Edit</th>
+                <th className="w-1/5 py-2">Delete</th>
               </tr>
             </thead>
 
             <tbody className="bg-white">
-              {data.getClientsSeller.map((client: Client) => (
-                <tr key={client.id}>
-                  <td className="border px-4 py-2">{client.name} {client.lastname}</td>
-                  <td className="border px-4 py-2">{client.company}</td>
-                  <td className="border px-4 py-2">{client.email}</td>
-                </tr>
+              {data.getClientsSeller.map((client: ClientType) => (
+                <Client
+                  key={client.id}
+                  {...client}
+                />
               ))}
             </tbody>
           </table>

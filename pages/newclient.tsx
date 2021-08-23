@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 ///////////////////////////////////////////
 import { useFormik } from 'formik';
-import { useMutation,gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import * as Yup from 'yup';
 //////////////////////////////////////////
 import Layout from '../components/Layout';
