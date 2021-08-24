@@ -7,53 +7,52 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 //////////////////////////////////////////
 import { showMsg } from '../../helpers';
-import { GET_CLIENT, UPDATE_CLIENT } from '../../graphql';
+import { GET_PRODUCT, UPDATE_PRODUCT } from '../../graphql';
 ///////////////////////////////////////////////////
-import { ClientType } from '../../types';
+import { ProductType } from '../../types';
 /////////////////////////////////////////
 import Layout from '../../components/Layout';
 import Spinner from '../../components/Spinner';
 /////////////////////////////////////////
-
-const EditClient = () => {
+ 
+const EditProduct = () => {
 
     const [msg, setMsg] = useState('');
 
     const router = useRouter();
-    const { query: { clientid } } = router;
+    const { query: { productid } } = router;
 
-    const { data, loading, error } = useQuery(GET_CLIENT, {
+    const { data, loading, error } = useQuery(GET_PRODUCT, {
         variables: {
-            id:clientid
+            id:productid
         }
     });
 
-    const [ updateClient ] = useMutation(UPDATE_CLIENT);
+    const [ updateProduct ] = useMutation(UPDATE_PRODUCT);
 
-    const updateClientInfo = async (values:ClientType)=> {
-        const { name, lastname, company, email, phone } = values;
+    const updateProductInfo = async (values:ProductType)=> {
+
+        const { name, price, stock } = values;
 
         try {
-            const { data } = await updateClient( {
+            const { data } = await updateProduct( {
                 variables: {
-                    id: clientid,
+                    id: productid,
                     input: {
                         name, 
-                        lastname, 
-                        company, 
-                        email, 
-                        phone
+                        stock: Number(stock),
+                        price: Number(price),
                     }
                 }
             });
 
             Swal.fire(
                 'Updated',
-                data.updateClient,
+                'Product has been updated successfully',
                 'success'
             )
 
-            router.push('/');
+            router.push('/products');
         } catch(error) {
             setMsg(error.message.replace('GraphQL error: ', ''));
 
@@ -65,12 +64,11 @@ const EditClient = () => {
 
     const validationSchema = Yup.object({
         name: Yup.string().required('Name is required'),
-        lastname: Yup.string().required('Last name is required'),
-        company: Yup.string().required('Name is required'),
-        email: Yup.string().email('Email is invalid').required('Email is required')
+        price: Yup.number().required('Price is required').positive('Only positive numbers'),
+        stock: Yup.number().required('Stock is required').positive('Only positive numbers').integer('Only integer numbers'),
     })
 
-    const getClient = data?.getClient;
+    const getProduct = data?.getProduct;
 
     return ( 
     <Layout>
@@ -83,9 +81,9 @@ const EditClient = () => {
                 <Formik
                     validationSchema={validationSchema}
                     enableReinitialize
-                    initialValues={ getClient }
+                    initialValues={ getProduct }
                     onSubmit={ (values) => {
-                        updateClientInfo(values)
+                        updateProductInfo(values)
                     }}
                 >
                     {props => {
@@ -120,96 +118,55 @@ const EditClient = () => {
     
                                 <div className="mb-4">
                                     <label 
-                                        htmlFor="lastname"
+                                        htmlFor="price"
                                         className="block text-gray-700 text-sm font-bold mb-2"
-                                    >Last name</label>
+                                    >Price</label>
         
                                     <input
                                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="lastname" 
-                                        type="text"
-                                        placeholder="Client's last name"
-                                        value={props.values?.lastname || ''}
+                                        id="price" 
+                                        type="number"
+                                        placeholder="Product's Price"
+                                        value={props.values?.price || 0}
                                         onChange={props.handleChange}
                                         onBlur={props.handleBlur}
                                     />
                                 </div>
                 
-                                {props.touched.lastname && props.errors.lastname ? (
+                                {props.touched.price && props.errors.price ? (
                                     <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
                                         <p className="font-bold">Error</p>
-                                        <p>{props.errors.lastname}</p>
+                                        <p>{props.errors.price}</p>
                                     </div>
                                 ) : null}
     
                                 <div className="mb-4">
                                     <label 
-                                        htmlFor="company"
+                                        htmlFor="stock"
                                         className="block text-gray-700 text-sm font-bold mb-2"
-                                    >Company</label>
+                                    >Stock</label>
             
                                     <input
                                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="company" 
-                                        type="text"
-                                        placeholder="Client's company"
-                                        value={props.values?.company || ''}
+                                        id="stock" 
+                                        type="number"
+                                        placeholder="Product's stock"
+                                        value={props.values?.stock || 0}
                                         onChange={props.handleChange}
                                         onBlur={props.handleBlur}
                                     />
                                 </div>
                 
-                                {props.touched.company && props.errors.company ? (
+                                {props.touched.stock && props.errors.stock ? (
                                     <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
                                         <p className="font-bold">Error</p>
-                                        <p>{props.errors.company}</p>
+                                        <p>{props.errors.stock}</p>
                                     </div>
                                 ) : null}
-        
-                                <div className="mb-4">
-                                    <label 
-                                        htmlFor="email"
-                                        className="block text-gray-700 text-sm font-bold mb-2"
-                                    >Email</label>
-            
-                                    <input
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="email" 
-                                        type="email"
-                                        placeholder="Client's email"
-                                        value={props.values?.email || ''}
-                                        onChange={props.handleChange}
-                                        onBlur={props.handleBlur}
-                                    />
-                                </div>
-    
-                                {props.touched.email && props.errors.email ? (
-                                    <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                                        <p className="font-bold">Error</p>
-                                        <p>{props.errors.email}</p>
-                                    </div>
-                                ) : null}
-    
-                                <div className="mb-4">
-                                    <label 
-                                        htmlFor="phone"
-                                        className="block text-gray-700 text-sm font-bold mb-2"
-                                    >Phone number</label>
-            
-                                    <input
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="phone" 
-                                        type="tel"
-                                        placeholder="Client's phone number"
-                                        value={props.values?.phone || ''}
-                                        onChange={props.handleChange}
-                                        onBlur={props.handleBlur}
-                                    />
-                                </div>
 
                                 <input 
                                     type="submit" 
-                                    value="Edit client"
+                                    value="Edit product"
                                     className="bg-gray-800 w-full mt-5 p-2 text-white uppercase font-bold hover:bg-gray-900"
                                 />
                             </form>
@@ -223,4 +180,4 @@ const EditClient = () => {
      );
 }
  
-export default EditClient;
+export default EditProduct;

@@ -81,7 +81,7 @@ export default function NewClient() {
       <Layout>
         <h1 className="text-2xl text-gray-800 font-light">New client</h1>
         {msg && showMsg(msg)}
-        <div className="flex justify-center mt-">
+        <div className="flex justify-center mt-5">
           <div className="w-full max-w-lg">
             {loading && <Spinner/>}
             {!loading && (

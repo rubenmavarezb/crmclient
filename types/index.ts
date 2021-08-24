@@ -7,3 +7,10 @@ export type ClientType = {
     seller: string;
     phone: string;
 }
+
+export type ProductType = {
+    id:string;
+    name: string;
+    stock: number;
+    price: number;
+}
