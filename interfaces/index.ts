@@ -19,6 +19,21 @@ export type ProductType = {
     quantity?:number;
 }
 
+export type OrderGroup = {
+    id:string;
+    quantity:number;
+    name:string;
+}
+
+export type OrderType = {
+    id:string;
+    client:string;
+    seller:string;
+    state:string;
+    total: number;
+    order: OrderGroup[]
+}
+
 export type InitialStateType = {
     client: ClientType;
     products: ProductType[];

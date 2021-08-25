@@ -59,6 +59,23 @@ export const GET_PRODUCT = gql`
   }
 `;
 
+export const GET_ORDERS_FROM_SELLER = gql`
+  query getOrdersBySeller {
+    getOrdersBySeller {
+      id
+      order {
+        id
+        quantity
+        name
+      }
+      client
+      seller
+      total
+      state
+    }
+  }
+`;
+
 //mutations
 export const NEW_ACCOUNT = gql`
   mutation newUser($input: UserInput) {
