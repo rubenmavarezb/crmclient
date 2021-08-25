@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import OrderContext from '../../context/orders/orderContext';
 //////////////////////////////////////////
 import { OrderContextType } from '../../interfaces';
+import Spinner from '../Spinner';
 //////////////////////////////////////////
 
 const OrderTotal = () => {
@@ -17,9 +18,13 @@ const OrderTotal = () => {
             <h2
                 className="text-gray-800 text-lg"
             >Total: </h2>
-            <p
-                className="text-gray-800 mt-0"
-            >$ {total}</p>
+            {isNaN(total) ? (
+                <Spinner/>
+            ) : (
+                <p
+                    className="text-gray-800 mt-0"
+                >$ {total}</p>
+            )}
         </div>
      );
 }

@@ -11,6 +11,7 @@ export type ClientType = {
 }
 
 export type ProductType = {
+    __typename:string;
     id:string;
     name: string;
     stock: number;
@@ -19,7 +20,7 @@ export type ProductType = {
 }
 
 export type InitialStateType = {
-    client: ClientType | {};
+    client: ClientType;
     products: ProductType[];
     total: number;
 }

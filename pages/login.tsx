@@ -11,12 +11,6 @@ import { showMsg } from '../helpers';
 import { AUTHENTICATE_USER } from '../graphql';
 //////////////////////////////////////////////////
 
-const cantidad = arrayDelCarrito => {
-  let total = arrayDelCarrito.reduce((t, product) => t + product.cantidas, 0);
-  console.log(total)
-  return total 
-}
-
 export default function Login() {
 
   const [msg, setMsg] = useState('');

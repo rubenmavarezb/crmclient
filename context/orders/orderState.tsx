@@ -8,7 +8,7 @@ import { InitialStateType, ClientType, ProductType, OrderContextType } from '../
 const OrderState = ({children}: {children: React.ReactNode}) => {
 
     const initialState: InitialStateType = {
-        client: {},
+        client: null,
         products: [],
         total: 0
     }
