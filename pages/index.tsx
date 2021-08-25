@@ -7,7 +7,7 @@ import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import Client from '../components/Client';
 //////////////////////////////////////////
-import { ClientType } from '../types';
+import { ClientType } from '../interfaces';
 //////////////////////////////////////////
 import { GET_CLIENTS_FROM_USER } from '../graphql'
 //////////////////////////////////////////////

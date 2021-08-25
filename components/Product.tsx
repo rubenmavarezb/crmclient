@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client';
 import { DELETE_PRODUCT, GET_PRODUCTS } from '../graphql';
 import { showMsg } from '../helpers';
 ///////////////////////////////////////////////////
-import { ProductType } from '../types';
+import { ProductType } from '../interfaces';
 ///////////////////////////////////////////////////
 
 

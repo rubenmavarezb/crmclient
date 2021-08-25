@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import { showMsg } from '../../helpers';
 import { GET_PRODUCT, UPDATE_PRODUCT } from '../../graphql';
 ///////////////////////////////////////////////////
-import { ProductType } from '../../types';
+import { ProductType } from '../../interfaces';
 /////////////////////////////////////////
 import Layout from '../../components/Layout';
 import Spinner from '../../components/Spinner';

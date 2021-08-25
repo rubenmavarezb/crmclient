@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 ///////////////////////////////////////////////////
 import { DELETE_CLIENT, GET_CLIENTS_FROM_USER } from '../graphql';
 ///////////////////////////////////////////////////
-import { ClientType } from '../types';
+import { ClientType } from '../interfaces';
 ///////////////////////////////////////////////////
 
 

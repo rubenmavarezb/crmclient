@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 //////////////////////////////////////////
 import { GET_PRODUCTS } from '../graphql';
-import { ProductType } from '../types';
+import { ProductType } from '../interfaces';
 //////////////////////////////////////////
 import Layout from '../components/Layout';
 import Product from '../components/Product';

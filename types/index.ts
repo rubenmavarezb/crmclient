@@ -1,16 +1,6 @@
-export type ClientType = {
-    id:string;
-    name: string;
-    lastname:string;
-    company:string;
-    email: string;
-    seller: string;
-    phone: string;
-}
-
-export type ProductType = {
-    id:string;
-    name: string;
-    stock: number;
-    price: number;
+export enum TYPES {
+    SELECT_CLIENT = 'SELECT_CLIENT',
+    SELECT_PRODUCTS = 'SELECT_PRODUCTS',
+    PRODUCT_QUANTITY = 'PRODUCT_QUANTITY',
+    UPDATE_TOTAL = 'UPDATE_TOTAL'
 }

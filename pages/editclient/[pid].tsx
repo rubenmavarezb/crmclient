@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import { showMsg } from '../../helpers';
 import { GET_CLIENT, UPDATE_CLIENT } from '../../graphql';
 ///////////////////////////////////////////////////
-import { ClientType } from '../../types';
+import { ClientType } from '../../interfaces';
 /////////////////////////////////////////
 import Layout from '../../components/Layout';
 import Spinner from '../../components/Spinner';
