@@ -5,7 +5,8 @@ import fetch from 'cross-fetch';
 
 const httpLink = createHttpLink({
     fetch,
-    uri: 'http://localhost:4000/'
+    //uri: 'http://localhost:4000/'
+    uri: 'https://still-peak-65569.herokuapp.com/'
 });
 
 const authLink = setContext((_, { headers }) => {
