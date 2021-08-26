@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 ///////////////////////////////////////////////////
 import { useFormik } from 'formik';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import * as Yup from 'yup';
 ///////////////////////////////////////////////////
 import Layout from '../components/Layout';
@@ -181,6 +182,13 @@ export default function NewAccount() {
               className="bg-gray-800 w-full mt-5 p-2 text-white uppercase hover:bg-gray-900"
             />
           </form>
+          <Link
+              href="/login"
+            >
+              <span
+                className="text-white underline cursor-pointer"
+              >Already have an account?</span>
+            </Link>
         </div>
       </div>
       </Layout>

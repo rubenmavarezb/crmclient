@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 ///////////////////////////////////////////////////
 import { useFormik } from 'formik';
 import { useMutation } from '@apollo/client';
@@ -44,8 +45,12 @@ export default function Login() {
 
         setMsg('Hold on, we are validating your information...');
 
-        const { token } = data.authenticateUser;
-        localStorage.setItem('token', token);
+
+
+        setTimeout(() => {
+          const { token } = data.authenticateUser;
+          localStorage.setItem('token', token);
+        }, 1000);
 
         setTimeout(() => {
           setMsg(null);
@@ -127,9 +132,16 @@ export default function Login() {
               <input 
                 type="submit" 
                 value="Log in"
-                className="bg-gray-800 w-full mt-5 p-2 text-white uppercase hover:bg-gray-900"
+                className="bg-gray-800 w-full mt-5 p-2 text-white uppercase cursor-pointer hover:bg-gray-900"
               />
             </form>
+            <Link
+              href="/newaccount"
+            >
+              <span
+                className="text-white underline cursor-pointer"
+              >New account?</span>
+            </Link>
           </div>
         </div>
       </Layout>

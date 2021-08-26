@@ -51,3 +51,28 @@ export type OrderContextType = InitialStateType & {
     updateProductQuantity: (product:ProductType) => void;
     updateTotal: () => void;
 }
+
+export type SellerType = {
+    name:string;
+    email:string;
+}
+
+export type BestSellersType = {
+    total:number;
+    seller: SellerType[]
+}
+
+export type SellersChartType = SellerType & {
+    __typename?:string;
+    total:number;
+}
+
+export type BestClientsType = {
+    total:number;
+    client: ClientType[]
+}
+
+export type ClientsChartType = ClientType & {
+    __typename?:string;
+    total:number;
+}

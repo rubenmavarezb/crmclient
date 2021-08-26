@@ -21,8 +21,8 @@ const Header = () => {
     const { name, lastname } = data.getUser;
 
     return ( 
-        <header className="flex justify-between mb-6">
-            <p className="mr-2">Hola: {name} {lastname}</p>
+        <header className="sm:flex sm:justify-between mb-6">
+            <p className="mr-2 mb-5 lg:mb-0">Hola: {name} {lastname}</p>
 
             <button 
                 onClick={() => logOut()}

@@ -90,6 +90,30 @@ export const GET_ORDERS_FROM_SELLER_ID = gql`
   }
 `;
 
+export const BEST_SELLERS = gql`
+  query bestSellers {
+    bestSellers {
+      seller {
+        name
+        email
+      }
+      total
+    }
+  }
+`;
+
+export const BEST_CLIENTS = gql`
+  query bestClients {
+    bestClients {
+      client {
+        name
+        email
+      }
+      total
+    }
+  }
+`;
+
 //mutations
 export const NEW_ACCOUNT = gql`
   mutation newUser($input: UserInput) {
