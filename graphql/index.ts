@@ -68,10 +68,24 @@ export const GET_ORDERS_FROM_SELLER = gql`
         quantity
         name
       }
-      client
+      client {
+        id
+        name
+        lastname
+        email
+        phone
+      }
       seller
       total
       state
+    }
+  }
+`;
+
+export const GET_ORDERS_FROM_SELLER_ID = gql`
+  query getOrdersBySeller {
+    getOrdersBySeller {
+      id
     }
   }
 `;
@@ -160,5 +174,19 @@ export const NEW_ORDER = gql`
     newOrder(input: $input) {
       id
     }
+  }
+`;
+
+export const UPDATE_ORDER = gql`
+  mutation updateOrder($id: ID!, $input: OrderInput) {
+    updateOrder(id: $id, input: $input) {
+      state
+    }
+  }
+`;
+
+export const DELETE_ORDER = gql`
+  mutation deleteOrder($id: ID!) {
+    deleteOrder(id:$id)
   }
 `;

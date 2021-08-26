@@ -13,7 +13,7 @@ import OrderSummary from '../components/orders/OrderSummary';
 import OrderTotal from '../components/orders/OrderTotal';
 //////////////////////////////////////////
 import { showMsg } from '../helpers';
-import { NEW_ORDER } from '../graphql';
+import { NEW_ORDER, GET_ORDERS_FROM_SELLER } from '../graphql';
 import { OrderContextType } from '../interfaces';
 //////////////////////////////////////////
  
@@ -25,7 +25,19 @@ const NewOrder = () => {
     const orderContext: OrderContextType = useContext(OrderContext);
     const { client, products, total } = orderContext;
 
-    const [ newOrder ] = useMutation(NEW_ORDER);
+    const [ newOrder ] = useMutation(NEW_ORDER, {
+        update(cache, { data: { newOrder } }) {
+          const { getOrdersBySeller } = cache.readQuery({ query: GET_ORDERS_FROM_SELLER});
+    
+          cache.writeQuery({
+            query: GET_ORDERS_FROM_SELLER,
+            data: {
+                getOrdersBySeller: [...getOrdersBySeller, newOrder ]
+            }
+          })
+    
+        }
+      });
 
     const validateOrder = () => !products.every(product => product?.quantity && product.quantity > 0) || !total || Object.keys(client).length === 0 ? ' opacity-50 cursor-not-allowed ' : '';
 

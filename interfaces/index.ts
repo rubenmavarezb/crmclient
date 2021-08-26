@@ -27,7 +27,7 @@ export type OrderGroup = {
 
 export type OrderType = {
     id:string;
-    client:string;
+    client:ClientType;
     seller:string;
     state:string;
     total: number;
